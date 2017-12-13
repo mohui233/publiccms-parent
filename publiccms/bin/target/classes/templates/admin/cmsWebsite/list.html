@@ -1,0 +1,37 @@
+<@_sysAuthorized roleIds=admin.roles urls='cmsWebsite/add,cmsWebsite/delete'><#assign authorizedMap=map/></@_sysAuthorized>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+		<#if authorizedMap['cmsWebsite/add']>
+			<li><a href="cmsWebsite/add.html?id={sid}" target="navTab" rel="cmsWebsite/edit"><i class="icon-edit icon-large"></i> 修改</a></li>
+		</#if>
+		</ul>
+	</div>
+<@_websiteList name=name code=code 
+            keywords=keywords description=description 
+            pageIndex=pageNum count=numPerPage>
+	<table class="list" width="100%" layoutH="70">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>网站名称</th>
+				<th>编码</th>
+				<th>关键词</th>
+				<th>描述</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list page.list as a>
+			<tr target="sid" rel="${a.id}">
+				<td>${a.id!}</td>
+				<td>${a.name!}</td>
+				<td>${a.code!}</td>
+				<td>${a.keywords!}</td>
+				<td>${a.description!}</td>
+			</tr>
+			</#list>
+		</tbody>
+	</table>
+	<#include "../include_page/page.html"/>
+</@_websiteList>
+</div>

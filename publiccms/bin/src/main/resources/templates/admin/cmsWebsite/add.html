@@ -1,0 +1,30 @@
+<@_website id=id><#assign a=object/></@_website>
+<form method="post" action="cmsWebsite/save.do?callbackType=closeCurrent&navTabId=cmsWebsite/list" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+	<input name="id" type="hidden" value="${id!}" />
+	<div class="formBar">
+		<ul>
+			<li><button type="submit" class="buttonActive">保存</button></li>
+			<li><button type="button" class="button close">取消</button></li>
+		</ul>
+	</div>
+	<div class="pageContent">
+		<div class="pageFormContent" layoutH="56">
+			<dl>
+				<dt>网站名称：</dt>
+				<dd><input class="required" name="name" type="text" size="30" value="${(a.name)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>编码：</dt>
+				<dd><input class="required" name="code" type="text" size="30" value="${(a.code)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>站点默认关键词：</dt>
+				<dd><textarea name="keywords" maxlength="200" type="text" style="width: 100%;" rows="5" value="${(a.keywords)!}">${(a.keywords)!}</textarea></dd>
+			</dl>
+			<dl>
+				<dt>站点描述：</dt>
+				<dd><textarea name="description" maxlength="400" type="text" style="width: 100%;" rows="5" value="${(a.description)!}">${(a.description)!}</textarea></dd>
+			</dl>
+		</div>
+	</div>
+</form>

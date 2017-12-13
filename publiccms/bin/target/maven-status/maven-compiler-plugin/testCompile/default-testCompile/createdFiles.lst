@@ -1,0 +1,7 @@
+com\publiccms\common\generator\mybatis\ServicePlugin.class
+com\publiccms\common\generator\entity\EntityCondition.class
+com\publiccms\common\generator\MybatisGenerator.class
+com\publiccms\common\generator\entity\EntityColumn.class
+org\publiccms\test\config\CmsTestConfig.class
+com\publiccms\common\generator\SourceGenerator.class
+org\publiccms\test\SysSiteServiceTest.class

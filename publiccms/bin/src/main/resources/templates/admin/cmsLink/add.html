@@ -1,0 +1,41 @@
+<@_link id=id><#assign a=object/></@_link>
+<form method="post" action="cmsLink/save.do?callbackType=closeCurrent&navTabId=cmsLink/list" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+	<input name="id" type="hidden" value="${id!}" />
+	<div class="formBar">
+		<ul>
+			<li><button type="submit" class="buttonActive">保存</button></li>
+			<li><button type="button" class="button close">取消</button></li>
+		</ul>
+	</div>
+	<div class="pageContent">
+		<div class="pageFormContent" layoutH="56">
+			<dl>
+				<dt>名称：</dt>
+				<dd><input class="required" name="title" type="text" size="30" value="${(a.title)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>编码：</dt>
+				<dd><input class="required" name="code" type="text" size="30" value="${(a.code)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>图片：</dt>
+				<dd><input name="image" type="text" value="${(a.image)!}" maxlength="300" size="30" type="text"/></dd>
+				<a class="btnAttach" href="common/upload.html?field=image&onlyImage=true" lookupGroup="" width="560" height="300">图片</a>
+				<#include "../include_page/preview.html"/>
+				<@preview 'link' 'input[name=image]'/>
+			</dl>
+			<dl>
+				<dt>标签：</dt>
+				<dd><input name="label" type="text" size="30" value="${(a.label)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>链接：</dt>
+				<dd><input name="url" type="text" size="30" value="${(a.url)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>排序：</dt>
+				<dd><input name="weight" type="text" size="30" value="${(a.weight)!}"/></dd>
+			</dl>
+		</div>
+	</div>
+</form>

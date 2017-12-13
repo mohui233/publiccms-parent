@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/publiccms/publiccms.iml" filepath="$PROJECT_DIR$/publiccms/publiccms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/publiccms-common/publiccms-common.iml" filepath="$PROJECT_DIR$/publiccms-common/publiccms-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/publiccms-core/publiccms-core.iml" filepath="$PROJECT_DIR$/publiccms-core/publiccms-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/publiccms-parent.iml" filepath="$PROJECT_DIR$/publiccms-parent.iml" />
+    </modules>
+  </component>
+</project>

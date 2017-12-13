@@ -1,0 +1,59 @@
+<@_partner id=id><#assign a=object/></@_partner>
+<form method="post" action="cmsPartner/save.do?callbackType=closeCurrent&navTabId=cmsPartner/list" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+	<input name="id" type="hidden" value="${id!}" />
+	<div class="formBar">
+		<ul>
+			<li><button type="submit" class="buttonActive">保存</button></li>
+			<li><button type="button" class="button close">取消</button></li>
+		</ul>
+	</div>
+	<div class="pageContent">
+		<div class="pageFormContent" layoutH="56">
+			<dl>
+				<dt>标题：</dt>
+				<dd><input class="required" name="title" type="text" size="30" value="${(a.title)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>内容一：</dt>
+				<dd><input name="pretitle" type="text" size="30" value="${(a.pretitle)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>内容二：</dt>
+				<dd><input name="subtitle" type="text" size="30" value="${(a.subtitle)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>编码：</dt>
+				<dd><input class="required" name="code" type="text" size="30" value="${(a.code)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>模块：</dt>
+				<dd><input class="required" name="cut" type="text" size="30" value="${(a.cut)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>图片：</dt>
+				<dd><input name="image" type="text" value="${(a.image)!}" maxlength="300" size="30" type="text"/></dd>
+				<a class="btnAttach" href="common/upload.html?field=image&onlyImage=true" lookupGroup="" width="560" height="300">图片</a>
+				<#include "../include_page/preview.html"/>
+				<@preview 'partner' 'input[name=image]'/>
+			</dl>
+			<dl>
+				<dt>视频：</dt>
+				<dd><input type="hidden" name="id" value="${(a.id)!}"/></dd>
+				<dd><input type="text" name="filePath" value="${(a.filePath)!}" size="30"/></dd>
+				<a class="btnAttach" lookupGroup="" href="common/upload.html?field=filePath${('')}" width="560" height="300" >${('附件')}</a>
+			</dl>
+			<dl>
+				<dt>标签：</dt>
+				<dd><input name="label" type="text" size="30" value="${(a.label)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>链接：</dt>
+				<dd><input name="url" type="text" size="30" value="${(a.url)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>排序：</dt>
+				<dd><input name="weight" type="text" size="30" value="${(a.weight)!}"/></dd>
+			</dl>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,75 @@
+<div class="pageHeader">
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
+		<#include "../include_page/paramters.html"/>
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>标题：</label>
+					<input type="text" name="title" value="${title!}" />
+				</li>
+			</ul>
+			<div class="subBar">
+				<ul>
+					<li><button type="submit" class="buttonActive">搜索</button></li>
+				</ul>
+			</div>
+		</div>
+	</form>
+</div>
+<@_sysAuthorized roleIds=admin.roles urls='cmsPartner/add,cmsPartner/delete'><#assign authorizedMap=map/></@_sysAuthorized>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+		<#if authorizedMap['cmsPartner/add']>
+			<li><a href="cmsPartner/add.html" target="navTab" rel="cmsPartner/add"><i class="icon-plus-sign-alt icon-large"></i> 添加</a></li>
+			<li><a href="cmsPartner/add.html?id={sid}" target="navTab" rel="cmsPartner/edit"><i class="icon-edit icon-large"></i> 修改</a></li>
+		</#if>
+		<#if authorizedMap['cmsPartner/delete']>
+			<li><a href="cmsPartner/delete.do" title="确定要删除该些记录吗?" target="selectedTodo" rel="ids"><i class="icon-trash icon-large"></i> 批量删除</a></li>
+		</#if>
+		</ul>
+	</div>
+<@_partnerList title=title image=image 
+            label=label url=url weight=weight
+            pageIndex=pageNum count=numPerPage>
+	<table class="list" width="100%" layoutH="110">
+		<thead>
+			<tr>
+				<th width="50"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
+				<th>ID</th>
+				<th>标题</th>
+				<th>内容一</th>
+				<th width="250">内容二</th>
+				<th>编码</th>
+				<th>模块</th>
+				<th>图片</th>
+				<th>视频</th>
+				<th>排序</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list page.list as a>
+			<tr target="sid" rel="${a.id}">
+				<td><input name="ids" value="${a.id}" type="checkbox"></td>
+				<td>${a.id!}</td>
+				<td>${a.title!}</td>
+				<td>${a.pretitle!}</td>
+				<td>${a.subtitle!}</td>
+				<td>${a.code!}</td>
+				<td>${a.cut!}</td>
+				<td>${a.image!}</td>
+				<td>${a.filePath!}</td>
+				<td>${a.weight!}</td>
+				<td>
+				<#if authorizedMap['cmsPartner/delete']>
+					<a href="cmsPartner/delete.do?ids=${a.id}" title="确定要删除这条记录么?"  target="ajaxTodo">删除</a>
+				</#if>
+				</td>
+			</tr>
+			</#list>
+		</tbody>
+	</table>
+	<#include "../include_page/page.html"/>
+</@_partnerList>
+</div>

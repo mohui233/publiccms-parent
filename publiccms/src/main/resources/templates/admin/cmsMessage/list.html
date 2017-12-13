@@ -1,0 +1,84 @@
+<div class="pageHeader">
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
+		<#include "../include_page/paramters.html"/>
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>姓名:</label>
+					<input type="text" name="q3" value="${(q3)!}" />
+				</li>
+				<li>
+					<label>手机:</label>
+					<input type="text" name="q2" value="${(q2)!}" />
+				</li>
+				<li>
+					<label>问题:</label>
+					<input type="text" name="q1" value="${(q1)!}" />
+				</li>
+				<li>
+				<label>站点:</label>
+					<select class="combox" name="station">
+						<option value=""${(!station?has_content)?then(' selected="true"','')?no_esc}>请选择</option>
+						<option value="0"${(station??&&"0"=station)?then(' selected="true"','')?no_esc}>PC</option>
+						<option value="1"${(station??&&"1"=station)?then(' selected="true"','')?no_esc}>Mobile</option>
+					</select>
+				</li>
+			</ul>
+			<div class="subBar">
+				<ul>
+					<li><button type="submit" class="buttonActive">搜索</button></li>
+				</ul>
+			</div>
+		</div>
+	</form>
+</div>
+<@_sysAuthorized roleIds=admin.roles urls='cmsMessage/delete'><#assign authorizedMap=map/></@_sysAuthorized>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+		<#if authorizedMap['cmsMessage/delete']>
+			<li><a href="cmsMessage/delete.do" title="确定要删除该些记录吗?" target="selectedTodo" rel="ids"><i class="icon-trash icon-large"></i> 批量删除</a></li>
+		</#if>
+		</ul>
+	</div>
+<@_messageList q1=q1 q2=q2 q3=q3 station=station pageIndex=pageNum count=numPerPage>
+	<table class="list" width="100%" layoutH="110">
+		<thead>
+			<tr>
+				<th width="50"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
+				<th width="50">ID</th>
+				<th>问题</th>
+				<th>联系电话</th>
+				<th>姓名</th>
+				<th>站点</th>
+				<th>创建日期</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list page.list as a>
+			<tr target="sid" rel="${a.id}">
+				<td><input name="ids" value="${a.id}" type="checkbox"></td>
+				<td>${a.id}</td>
+				<td>${(a.q1)!}</td>
+				<td>${(a.q2)!}</td>
+				<td>${(a.q3)!}</td>
+				<td>
+					<#if a.station?has_content && a.station="1">
+						Mobile
+					<#else>
+						PC
+				    </#if>
+				</td>	
+				<td>${a.createDate!}</td>	
+				<td>
+				<#if authorizedMap['cmsMessage/delete']>
+					<a href="cmsMessage/delete.do?ids=${a.id}" title="确定要删除这条记录么?"  target="ajaxTodo">删除</a>
+				</#if>
+				</td>
+			</tr>
+			</#list>
+		</tbody>
+	</table>
+	<#include "../include_page/page.html"/>
+</@_messageList>

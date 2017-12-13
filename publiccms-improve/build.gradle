@@ -1,0 +1,6 @@
+dependencies {
+	compile project(':publiccms-core')
+	compile project(':publiccms-improve-oauth')
+	compile project(':publiccms-improve-oracle')
+	compile project(':publiccms-improve-redis')
+}
